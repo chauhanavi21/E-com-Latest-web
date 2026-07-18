@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+<filter id="grain">
+  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="n"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+  <feComposite operator="over" in2="SourceGraphic"/>
+</filter>
+
+<linearGradient id="tone" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#111111"/><stop offset="1" stop-color="#3a3a3a"/>
+</linearGradient>
+<linearGradient id="bone" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#DDD9D2"/><stop offset="1" stop-color="#C9C9C6"/>
+</linearGradient>
+</defs>
+<rect width="1600" height="900" fill="#F7F7F5"/>
+<g filter="url(#grain)">
+<rect width="1600" height="900" fill="#F7F7F5"/>
+<g opacity="0.9">
+<path d="M300 200 L 240 226 C 228 320, 228 480, 238 680 L 362 680 C 372 480, 372 320, 360 226 Z" fill="#111111"/>
+<path d="M800 180 L 736 208 C 722 320, 722 500, 734 700 L 866 700 C 878 500, 878 320, 864 208 Z" fill="url(#bone)" stroke="#6F6F6F" stroke-width="1" stroke-opacity="0.3"/>
+<path d="M1300 200 L 1244 228 C 1232 330, 1234 500, 1246 680 L 1354 680 C 1366 500, 1368 330, 1356 228 Z" fill="url(#tone)"/>
+</g>
+<line x1="80" y1="790" x2="1520" y2="790" stroke="#C9C9C6" stroke-width="1"/>
+<text x="80" y="840" font-family="Georgia, serif" font-size="26" fill="#6F6F6F" letter-spacing="6">THREE CUTS. ONE LINE.</text>
+</g>
+</svg>
