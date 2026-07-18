@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+<defs>
+<filter id="grain">
+  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="n"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+  <feComposite operator="over" in2="SourceGraphic"/>
+</filter>
+
+<linearGradient id="tone" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#111111"/><stop offset="1" stop-color="#3a3a3a"/>
+</linearGradient>
+<linearGradient id="bone" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#DDD9D2"/><stop offset="1" stop-color="#C9C9C6"/>
+</linearGradient>
+</defs>
+<rect width="600" height="750" fill="#F7F7F5"/>
+<g filter="url(#grain)">
+<rect x="0" y="0" width="600" height="750" fill="#F7F7F5"/>
+<line x1="40" y1="710" x2="560" y2="710" stroke="#C9C9C6" stroke-width="1"/>
+
+<g transform="translate(300 370)">
+<path d="M0 -250 L -66 -214 C -78 -140, -74 -80, -60 -40 C -78 80, -82 180, -66 300 L 66 300 C 82 180, 78 80, 60 -40 C 74 -80, 78 -140, 66 -214 Z" fill="url(#tone)"/>
+<path d="M0 -250 L -34 -60 L 0 300 L 6 300 L 12 -60 Z" fill="#F7F7F5" opacity="0.09"/>
+<line x1="-60" y1="-40" x2="60" y2="-40" stroke="#F7F7F5" stroke-width="1.8" opacity="0.35"/>
+<path d="M-40 300 C -30 160, -34 40, -38 -20" stroke="#F7F7F5" stroke-width="1.5" fill="none" opacity="0.25"/>
+<path d="M40 300 C 30 160, 34 40, 38 -20" stroke="#F7F7F5" stroke-width="1.5" fill="none" opacity="0.25"/>
+</g></g>
+</svg>
