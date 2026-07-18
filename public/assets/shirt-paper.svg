@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+<defs>
+<filter id="grain">
+  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="n"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+  <feComposite operator="over" in2="SourceGraphic"/>
+</filter>
+
+<linearGradient id="tone" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#111111"/><stop offset="1" stop-color="#3a3a3a"/>
+</linearGradient>
+<linearGradient id="bone" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#DDD9D2"/><stop offset="1" stop-color="#C9C9C6"/>
+</linearGradient>
+</defs>
+<rect width="600" height="750" fill="#F7F7F5"/>
+<g filter="url(#grain)">
+<rect x="0" y="0" width="600" height="750" fill="#F7F7F5"/>
+<line x1="40" y1="710" x2="560" y2="710" stroke="#C9C9C6" stroke-width="1"/>
+
+<g transform="translate(300 380)">
+<path d="M0 -220 L -100 -184 C -112 -100, -110 0, -100 110 L 100 110 C 110 0, 112 -100, 100 -184 Z" fill="url(#bone)"/>
+<path d="M0 -220 L -26 -186 L 0 -120 L 26 -186 Z" fill="#F7F7F5"/>
+<path d="M0 -220 L -26 -186 L -12 -178 L 0 -196 Z" fill="#6F6F6F" opacity="0.5"/>
+<path d="M0 -220 L 26 -186 L 12 -178 L 0 -196 Z" fill="#6F6F6F" opacity="0.5"/>
+<line x1="0" y1="-120" x2="0" y2="96" stroke="#6F6F6F" stroke-width="1.6" opacity="0.5"/>
+<circle cx="0" cy="-90" r="3" fill="#6F6F6F"/><circle cx="0" cy="-40" r="3" fill="#6F6F6F"/><circle cx="0" cy="10" r="3" fill="#6F6F6F"/><circle cx="0" cy="60" r="3" fill="#6F6F6F"/>
+<path d="M-100 -184 L -128 -60 L -102 -46 L -92 -140 Z" fill="url(#bone)" stroke="#6F6F6F" stroke-width="1" stroke-opacity="0.3"/>
+<path d="M100 -184 L 128 -60 L 102 -46 L 92 -140 Z" fill="url(#bone)" stroke="#6F6F6F" stroke-width="1" stroke-opacity="0.3"/>
+</g></g>
+</svg>
