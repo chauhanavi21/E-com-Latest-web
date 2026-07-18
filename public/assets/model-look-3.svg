@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 760" width="480" height="760">
+<defs>
+<filter id="grain">
+  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="n"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+  <feComposite operator="over" in2="SourceGraphic"/>
+</filter>
+
+<linearGradient id="tone" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#111111"/><stop offset="1" stop-color="#3a3a3a"/>
+</linearGradient>
+<linearGradient id="bone" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#DDD9D2"/><stop offset="1" stop-color="#C9C9C6"/>
+</linearGradient>
+</defs>
+
+<g filter="url(#grain)">
+<!-- floor shadow -->
+<ellipse cx="240" cy="726" rx="120" ry="12" fill="#111111" opacity="0.08"/>
+<!-- head -->
+<circle cx="240" cy="86" r="34" fill="#111111"/>
+<!-- neck -->
+<rect x="230" y="116" width="20" height="26" fill="#111111"/>
+<!-- arms (bare, drawn behind garments) -->
+<path d="M164 190 C 148 260, 146 330, 154 402 L 172 400 C 166 332, 170 264, 184 200 Z" fill="#111111"/>
+<path d="M316 190 C 332 260, 334 330, 326 402 L 308 400 C 314 332, 310 264, 296 200 Z" fill="#111111"/>
+<!-- legs -->
+<path d="M212 440 L 204 700 L 226 700 L 234 452 Z" fill="#111111"/>
+<path d="M268 440 L 276 700 L 254 700 L 246 452 Z" fill="#111111"/>
+<!-- shoes -->
+<path d="M200 700 L 228 700 L 232 716 L 192 716 Z" fill="#111111"/>
+<path d="M252 700 L 280 700 L 288 716 L 248 716 Z" fill="#111111"/>
+
+<path d="M240 142 L 192 172 C 182 240, 184 300, 196 340 C 186 460, 184 580, 196 700 L 284 700 C 296 580, 294 460, 284 340 C 296 300, 298 240, 288 172 Z"
+      fill="url(#tone)"/>
+<path d="M240 142 L 210 300 L 240 700 L 244 700 L 250 300 Z" fill="#F7F7F5" opacity="0.08"/>
+<path d="M196 340 L 284 340" stroke="#F7F7F5" stroke-width="1.5" opacity="0.3"/>
+<path d="M212 700 C 220 560, 218 440, 214 360" stroke="#F7F7F5" stroke-width="1.5" fill="none" opacity="0.22"/>
+<path d="M268 700 C 260 560, 262 440, 266 360" stroke="#F7F7F5" stroke-width="1.5" fill="none" opacity="0.22"/>
+</g>
+</svg>
