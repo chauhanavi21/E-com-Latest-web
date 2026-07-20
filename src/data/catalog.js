@@ -1,37 +1,37 @@
 export const PRODUCTS = [
-  { id: "coat-structure", name: "Structure Coat", category: "Outerwear", price: 480, img: "/assets/coat-structure.svg",
+  { id: "coat-structure", name: "Structure Coat", category: "Outerwear", price: 480, img: "https://images.unsplash.com/photo-1629374029669-aab2f060553b?q=80&w=900&auto=format&fit=crop&sat=-100", fb: "/assets/coat-structure.svg",
     desc: "A floor-skimming coat cut from double-faced wool. One seam runs the full length of the back — the garment hangs from it like a plumb line." },
-  { id: "blazer-line", name: "Line Blazer", category: "Tailoring", price: 360, img: "/assets/blazer-line.svg",
+  { id: "blazer-line", name: "Line Blazer", category: "Tailoring", price: 360, img: "https://images.unsplash.com/photo-1613915617430-8ab0fd7c6baf?q=80&w=900&auto=format&fit=crop&sat=-100", fb: "/assets/blazer-line.svg",
     desc: "Single-button tailoring with a lapel sharpened to a point. Padded only where the shoulder needs it, nowhere else." },
-  { id: "dress-column", name: "Column Dress", category: "Dresses", price: 420, img: "/assets/dress-column.svg",
+  { id: "dress-column", name: "Column Dress", category: "Dresses", price: 420, img: "https://images.unsplash.com/photo-1652184513381-9755426e7fd2?q=80&w=900&auto=format&fit=crop&sat=-100", fb: "/assets/dress-column.svg",
     desc: "A single uninterrupted line from collarbone to hem. Heavy crepe keeps the silhouette still while you move." },
-  { id: "shirt-paper", name: "Paper Shirt", category: "Shirting", price: 190, img: "/assets/shirt-paper.svg",
+  { id: "shirt-paper", name: "Paper Shirt", category: "Shirting", price: 190, img: "https://images.unsplash.com/photo-1611042553484-d61f84d22784?q=80&w=900&auto=format&fit=crop&sat=-100", fb: "/assets/shirt-paper.svg",
     desc: "Crisp bone poplin that holds a crease like folded paper. Mother-of-pearl buttons, hidden placket option on request." },
-  { id: "trouser-wide", name: "Wide Trouser", category: "Tailoring", price: 260, img: "/assets/trouser-wide.svg",
+  { id: "trouser-wide", name: "Wide Trouser", category: "Tailoring", price: 260, img: "https://images.unsplash.com/photo-1627577279497-4b24bf1021b6?q=80&w=900&auto=format&fit=crop&sat=-100", fb: "/assets/trouser-wide.svg",
     desc: "A full-leg trouser that breaks exactly once at the shoe. High rise, deep pockets, pressed front line." },
-  { id: "knit-cloud", name: "Cloud Knit", category: "Knitwear", price: 240, img: "/assets/knit-cloud.svg",
+  { id: "knit-cloud", name: "Cloud Knit", category: "Knitwear", price: 240, img: "https://images.unsplash.com/photo-1574015974293-817f0ebebb74?q=80&w=900&auto=format&fit=crop&sat=-100", fb: "/assets/knit-cloud.svg",
     desc: "Undyed merino spun loose. The horizontal rib is the only pattern this house allows itself." },
-  { id: "skirt-bias", name: "Bias Skirt", category: "Dresses", price: 230, img: "/assets/skirt-bias.svg",
+  { id: "skirt-bias", name: "Bias Skirt", category: "Dresses", price: 230, img: "https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?q=80&w=900&auto=format&fit=crop&sat=-100", fb: "/assets/skirt-bias.svg",
     desc: "Cut on the bias so the fabric falls in soft verticals. Sits at the natural waist, ends mid-calf." },
-  { id: "top-halter", name: "Halter Top", category: "Shirting", price: 150, img: "/assets/top-halter.svg",
+  { id: "top-halter", name: "Halter Top", category: "Shirting", price: 150, img: "https://images.unsplash.com/photo-1562572159-4efc207f5aff?q=80&w=900&auto=format&fit=crop&sat=-100", fb: "/assets/top-halter.svg",
     desc: "A single piece of bone jersey held by one seam at the neck. Wear it under the Line Blazer or on its own." }
 ];
 
 export const CATEGORIES = ["All", "Outerwear", "Tailoring", "Dresses", "Knitwear", "Shirting"];
 
 export const LOOKS = [
-  { name: "The Structure Coat", img: "/assets/model-look-1.svg", link: "/product/coat-structure" },
-  { name: "Cloud Knit / Wide Trouser", img: "/assets/model-look-2.svg", link: "/product/knit-cloud" },
-  { name: "The Column Dress", img: "/assets/model-look-3.svg", link: "/product/dress-column" }
+  { name: "The Structure Coat", img: "https://images.unsplash.com/photo-1629374029669-aab2f060553b?q=80&w=800&auto=format&fit=crop&sat=-100", fb: "/assets/model-look-1.svg", link: "/product/coat-structure" },
+  { name: "Cloud Knit / Wide Trouser", img: "https://images.unsplash.com/photo-1619086303291-0ef7699e4b31?q=80&w=800&auto=format&fit=crop&sat=-100", fb: "/assets/model-look-2.svg", link: "/product/knit-cloud" },
+  { name: "The Column Dress", img: "https://images.unsplash.com/photo-1578632292335-df3abbb0d586?q=80&w=800&auto=format&fit=crop&sat=-100", fb: "/assets/model-look-3.svg", link: "/product/dress-column" }
 ];
 
 export const LOOKBOOK = [
-  { img: "/assets/editorial-1.svg", caption: "Atelier study 01 — white on black", wide: false },
-  { img: "/assets/model-look-1.svg", caption: "Look 01 — Structure Coat", wide: false },
-  { img: "/assets/editorial-3.svg", caption: "Three cuts, one line", wide: true },
-  { img: "/assets/model-look-2.svg", caption: "Look 02 — Cloud Knit, Wide Trouser", wide: false },
-  { img: "/assets/editorial-2.svg", caption: "Cut in silence — the Column Dress", wide: false },
-  { img: "/assets/model-look-3.svg", caption: "Look 03 — Column Dress", wide: false }
+  { img: "https://images.unsplash.com/photo-1541519481457-763224276691?q=80&w=1000&auto=format&fit=crop&sat=-100", fb: "/assets/editorial-1.svg", caption: "Atelier study 01 — white on black", wide: false },
+  { img: "https://images.unsplash.com/photo-1629374029669-aab2f060553b?q=80&w=800&auto=format&fit=crop&sat=-100", fb: "/assets/model-look-1.svg", caption: "Look 01 — Structure Coat", wide: false },
+  { img: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1400&auto=format&fit=crop&sat=-100", fb: "/assets/editorial-3.svg", caption: "Three cuts, one line", wide: true },
+  { img: "https://images.unsplash.com/photo-1619086303291-0ef7699e4b31?q=80&w=800&auto=format&fit=crop&sat=-100", fb: "/assets/model-look-2.svg", caption: "Look 02 — Cloud Knit, Wide Trouser", wide: false },
+  { img: "https://images.unsplash.com/photo-1652184513381-9755426e7fd2?q=80&w=1000&auto=format&fit=crop&sat=-100", fb: "/assets/editorial-2.svg", caption: "Cut in silence — the Column Dress", wide: false },
+  { img: "https://images.unsplash.com/photo-1578632292335-df3abbb0d586?q=80&w=800&auto=format&fit=crop&sat=-100", fb: "/assets/model-look-3.svg", caption: "Look 03 — Column Dress", wide: false }
 ];
 
 export const POSTS = [
@@ -40,7 +40,7 @@ export const POSTS = [
     title: "Why we only work in two colors",
     date: "June 2026",
     tag: "Manifesto",
-    img: "/assets/editorial-1.svg",
+    img: "https://images.unsplash.com/photo-1541519481457-763224276691?q=80&w=1000&auto=format&fit=crop&sat=-100", fb: "/assets/editorial-1.svg",
     excerpt: "Color is the first thing a garment says. We wanted our clothes to say something else first.",
     body: [
       "Color is the first thing a garment says, and usually the loudest. Remove it, and the room goes quiet enough to hear the other things a garment can say: the weight of the cloth, the angle of a shoulder, the way a hem moves half a second after the person wearing it.",
@@ -53,7 +53,7 @@ export const POSTS = [
     title: "Anatomy of the Structure Coat",
     date: "May 2026",
     tag: "Atelier",
-    img: "/assets/coat-structure.svg",
+    img: "https://images.unsplash.com/photo-1629374029669-aab2f060553b?q=80&w=900&auto=format&fit=crop&sat=-100", fb: "/assets/coat-structure.svg",
     excerpt: "One seam runs the full length of the back. Everything else hangs from it.",
     body: [
       "The Structure Coat began as a single vertical line on a drafting table. That line survived every fitting and is now the center-back seam — the spine the whole coat hangs from, the way a plumb line hangs from a nail.",
@@ -66,7 +66,7 @@ export const POSTS = [
     title: "Care, repair, forever",
     date: "April 2026",
     tag: "House",
-    img: "/assets/editorial-2.svg",
+    img: "https://images.unsplash.com/photo-1652184513381-9755426e7fd2?q=80&w=1000&auto=format&fit=crop&sat=-100", fb: "/assets/editorial-2.svg",
     excerpt: "We repair any MONO/FORM piece free of charge, for as long as the house exists.",
     body: [
       "A garment you repair becomes more yours, not less. The mend records a winter, a move, a decade. We would rather our pieces collect that history than be replaced by a new season's version of themselves.",
@@ -102,3 +102,10 @@ export const SIZE_ROWS = [
   ["L", "96–102", "78–84", "102–108"],
   ["XL", "104–110", "86–92", "110–116"]
 ];
+
+export const EDITORIAL = {
+  atelier: { img: "https://images.unsplash.com/photo-1541519481457-763224276691?q=80&w=1000&auto=format&fit=crop&sat=-100", fb: "/assets/editorial-1.svg" },
+  column:  { img: "https://images.unsplash.com/photo-1652184513381-9755426e7fd2?q=80&w=1000&auto=format&fit=crop&sat=-100", fb: "/assets/editorial-2.svg" },
+  wide:    { img: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1400&auto=format&fit=crop&sat=-100", fb: "/assets/editorial-3.svg" },
+  street:  { img: "https://images.unsplash.com/photo-1619086303291-0ef7699e4b31?q=80&w=1000&auto=format&fit=crop&sat=-100", fb: "/assets/model-look-2.svg" }
+};
