@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PRODUCTS, CATEGORIES, LOOKBOOK } from "../data/catalog";
-import { ProductGrid, PageHead } from "../components/Chrome";
+import { ProductGrid, PageHead, Pic } from "../components/Chrome";
 import { useStore } from "../context/StoreContext";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -69,7 +69,7 @@ export function Product() {
     <>
       <main className="pdp">
         <div className="pdp__media" onMouseMove={onMove} onMouseLeave={onLeave}>
-          <img ref={imgRef} src={p.img} alt={p.name} />
+          <Pic src={p.img + "&h=1400"} fb={p.fb} alt={p.name} eager ref={imgRef} />
         </div>
         <div className="pdp__info">
           <p className="eyebrow">{p.category} — FW26</p>
@@ -139,7 +139,7 @@ export function Lookbook() {
       <div className="lookbook">
         {LOOKBOOK.map((l, i) => (
           <figure key={i} className={"lookbook__item" + (l.wide ? " wide" : "")}>
-            <img src={l.img} alt={l.caption} />
+            <Pic src={l.img} fb={l.fb} alt={l.caption} />
             <figcaption><span className="eyebrow">{String(i + 1).padStart(2, "0")} — {l.caption}</span></figcaption>
           </figure>
         ))}
