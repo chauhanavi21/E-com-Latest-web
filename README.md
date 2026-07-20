@@ -1,60 +1,67 @@
-# MONO/FORM — complete fashion e-commerce frontend (React + Vite)
+# MONO/FORM — fashion e-commerce (React frontend + Express backend)
 
-Black & white clothing house. Full client-ready page set, scroll animations
-(GSAP ScrollTrigger), 3D "changing room" hero, working cart/wishlist/checkout
-flow. Frontend only — all state lives in the browser, ready for a backend later.
+Black & white clothing house. Real fashion photography, dark mode, 16 pages,
+GSAP scroll animations, and a dummy Node/Express API.
 
-## Setup
+## Run it
 
-Requires Node 18+.
-
+**Terminal 1 — backend** (Node 18+):
 ```
-cd monoform-react
+cd server
 npm install
-npm run dev          # open http://localhost:5173
+npm run dev        # API on http://localhost:4000
 ```
 
-Production build:
+**Terminal 2 — frontend:**
 ```
-npm run build        # outputs to /dist
-npm run preview      # serve the production build locally
+npm install
+npm run dev        # site on http://localhost:5173 (proxies /api to :4000)
 ```
 
-## Pages (16 routes)
+The site also works **without** the backend — every API call has a local
+fallback, so `npm run dev` alone still gives a fully working demo.
 
-| Route | Page |
+## What changed in this version
+
+- **New preloader** — real progress (preloads hero photos + fonts + page load,
+  capped at 2.5s), then fully unmounts from the DOM so it costs nothing after.
+- **Performance** — removed the nav `mix-blend-mode` (a scroll killer), removed
+  per-frame drop-shadow filters, added `content-visibility` on below-fold
+  sections, lazy + async image decoding, and killed React StrictMode's dev
+  double-render.
+- **Dark mode** — toggle in the nav (●/○), respects system preference,
+  persists. Full variable-driven theming.
+- **Heading fixes** — line-heights and descender padding so Bodoni italics and
+  large clamps never clip.
+- **Responsive** — breakpoints at 1200 / 960 / 640 / 420. Mobile menu,
+  2-column product grid, horizontally scrollable filters, full-width cart
+  drawer, iOS zoom-on-focus prevention.
+- **Real assets** — free-license fashion photography (Unsplash CDN), served
+  grayscale via URL param to stay on-brand. Every image has a local SVG
+  fallback if offline (`fb` field in `src/data/catalog.js`).
+- **Backend** — Express API with JSON-file persistence in `server/data/`:
+
+| Endpoint | What it does |
 |---|---|
-| `/` | Home — hero changing room, marquee, pinned horizontal collection, editorial parallax, featured grid, manifesto |
-| `/shop` | Shop — category filters + price sorting |
-| `/product/:id` | Product detail — sizes, 3D tilt image, wishlist, accordions, related pieces |
-| `/lookbook` | Lookbook — editorial grid with clip reveals + parallax |
-| `/wishlist` | Saved pieces (persisted) |
-| `/checkout` | 3-step checkout: shipping → payment (demo) → review |
-| `/confirmation` | Order confirmation with generated order number |
-| `/journal` | Journal index |
-| `/journal/:slug` | Article page (3 written posts included) |
-| `/about` | The house / brand story |
-| `/contact` | Contact form + atelier info |
-| `/faq` | Shipping, returns, sizing, care + size guide table |
-| `/account` | Demo sign in / create account / dashboard |
-| `/legal/privacy`, `/legal/terms` | Legal pages |
-| `*` | Styled 404 |
+| `GET /api/health` | Liveness check |
+| `GET /api/products` `?category=&sort=` | Catalogue with filter/sort |
+| `GET /api/products/:id` | Single piece |
+| `POST /api/orders` | Places an order — server recomputes totals |
+| `GET /api/orders/:number` | Order lookup |
+| `POST /api/auth/register` / `login` | Demo auth (sha256-hashed, JSON store) |
+| `POST /api/newsletter` | Adds an email |
+| `POST /api/contact` | Stores a message |
 
-Cart drawer, toasts, and mobile menu work globally. Cart, wishlist, and the
-demo account persist in localStorage. Checkout is a mock — no payment happens.
+Checkout, sign-in, contact and newsletter all hit the API when it's running.
+Orders land in `server/data/orders.json` — show a client an order going in live.
 
-## Where to edit things
+## Editing
 
-- `src/data/catalog.js` — products, hero looks, lookbook, journal posts, FAQs, size chart. **Start here.**
-- `src/styles.css` — all styling; design tokens (colors, fonts) at the top.
-- `public/assets/` — all imagery (generated SVG placeholders). Swap in real
-  photos with the same paths, or update paths in `catalog.js`.
-  Hero model images: portrait ~480×760, transparent background works best.
-- `generate_assets.py` — regenerates the placeholder art (`python3 generate_assets.py`, then copy into `public/assets`).
+- `src/data/catalog.js` — products, looks, journal, FAQs. Photo URL in `img`,
+  local fallback in `fb`. Swap in client photography here.
+- `src/styles.css` — tokens at top, dark theme under `[data-theme="dark"]`.
+- `server/index.js` — the whole API in one commented file; swap the JSON
+  helpers for a real DB when going live.
 
-## Backend hookup later
-
-State is centralized in `src/context/StoreContext.jsx` (cart, wishlist, user).
-Replace the localStorage reads/writes there with API calls and the whole UI
-follows. Checkout's `placeOrder()` in `src/pages/Checkout.jsx` is the single
-point to POST an order.
+Photos are Unsplash-licensed (free for commercial use, no attribution
+required). Replace with owned photography before a real launch.
