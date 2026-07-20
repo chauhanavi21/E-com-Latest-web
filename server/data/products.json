@@ -1,0 +1,74 @@
+[
+  {
+    "id": "coat-structure",
+    "name": "Structure Coat",
+    "category": "Outerwear",
+    "price": 480,
+    "img": "https://images.unsplash.com/photo-1629374029669-aab2f060553b?q=80&w=900&auto=format&fit=crop&sat=-100",
+    "fb": "/assets/coat-structure.svg",
+    "desc": "A floor-skimming coat cut from double-faced wool. One seam runs the full length of the back — the garment hangs from it like a plumb line."
+  },
+  {
+    "id": "blazer-line",
+    "name": "Line Blazer",
+    "category": "Tailoring",
+    "price": 360,
+    "img": "https://images.unsplash.com/photo-1613915617430-8ab0fd7c6baf?q=80&w=900&auto=format&fit=crop&sat=-100",
+    "fb": "/assets/blazer-line.svg",
+    "desc": "Single-button tailoring with a lapel sharpened to a point. Padded only where the shoulder needs it, nowhere else."
+  },
+  {
+    "id": "dress-column",
+    "name": "Column Dress",
+    "category": "Dresses",
+    "price": 420,
+    "img": "https://images.unsplash.com/photo-1652184513381-9755426e7fd2?q=80&w=900&auto=format&fit=crop&sat=-100",
+    "fb": "/assets/dress-column.svg",
+    "desc": "A single uninterrupted line from collarbone to hem. Heavy crepe keeps the silhouette still while you move."
+  },
+  {
+    "id": "shirt-paper",
+    "name": "Paper Shirt",
+    "category": "Shirting",
+    "price": 190,
+    "img": "https://images.unsplash.com/photo-1611042553484-d61f84d22784?q=80&w=900&auto=format&fit=crop&sat=-100",
+    "fb": "/assets/shirt-paper.svg",
+    "desc": "Crisp bone poplin that holds a crease like folded paper. Mother-of-pearl buttons, hidden placket option on request."
+  },
+  {
+    "id": "trouser-wide",
+    "name": "Wide Trouser",
+    "category": "Tailoring",
+    "price": 260,
+    "img": "https://images.unsplash.com/photo-1627577279497-4b24bf1021b6?q=80&w=900&auto=format&fit=crop&sat=-100",
+    "fb": "/assets/trouser-wide.svg",
+    "desc": "A full-leg trouser that breaks exactly once at the shoe. High rise, deep pockets, pressed front line."
+  },
+  {
+    "id": "knit-cloud",
+    "name": "Cloud Knit",
+    "category": "Knitwear",
+    "price": 240,
+    "img": "https://images.unsplash.com/photo-1574015974293-817f0ebebb74?q=80&w=900&auto=format&fit=crop&sat=-100",
+    "fb": "/assets/knit-cloud.svg",
+    "desc": "Undyed merino spun loose. The horizontal rib is the only pattern this house allows itself."
+  },
+  {
+    "id": "skirt-bias",
+    "name": "Bias Skirt",
+    "category": "Dresses",
+    "price": 230,
+    "img": "https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?q=80&w=900&auto=format&fit=crop&sat=-100",
+    "fb": "/assets/skirt-bias.svg",
+    "desc": "Cut on the bias so the fabric falls in soft verticals. Sits at the natural waist, ends mid-calf."
+  },
+  {
+    "id": "top-halter",
+    "name": "Halter Top",
+    "category": "Shirting",
+    "price": 150,
+    "img": "https://images.unsplash.com/photo-1562572159-4efc207f5aff?q=80&w=900&auto=format&fit=crop&sat=-100",
+    "fb": "/assets/top-halter.svg",
+    "desc": "A single piece of bone jersey held by one seam at the neck. Wear it under the Line Blazer or on its own."
+  }
+]
