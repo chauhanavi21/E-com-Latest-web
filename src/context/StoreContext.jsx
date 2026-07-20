@@ -17,7 +17,12 @@ export function StoreProvider({ children }) {
   const [wishlist, setWishlist] = usePersisted("mf_wishlist", []);
   const [user, setUser] = usePersisted("mf_user", null);
   const [cartOpen, setCartOpen] = useState(false);
+  const [theme, setTheme] = usePersisted("mf_theme",
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   const [toast, setToast] = useState("");
+
+  useEffect(() => { document.documentElement.dataset.theme = theme; }, [theme]);
+  const toggleTheme = useCallback(() => setTheme(t => t === "dark" ? "light" : "dark"), [setTheme]);
 
   const showToast = useCallback(msg => {
     setToast(msg);
@@ -52,6 +57,7 @@ export function StoreProvider({ children }) {
     wishlist, toggleWishlist,
     user, setUser,
     cartOpen, setCartOpen,
+    theme, toggleTheme,
     toast, showToast
   };
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
