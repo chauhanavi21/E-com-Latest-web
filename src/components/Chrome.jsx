@@ -1,11 +1,28 @@
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { PRODUCTS } from "../data/catalog";
 import { useStore } from "../context/StoreContext";
+import { api, withFallback } from "../api";
+
+
+/* ---------------- Img with graceful fallback ---------------- */
+export const Pic = forwardRef(function Pic({ src, fb, alt = "", eager = false, ...rest }, ref) {
+  return (
+    <img
+      ref={ref}
+      src={src}
+      alt={alt}
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+      onError={e => { if (fb && !e.currentTarget.src.endsWith(fb)) e.currentTarget.src = fb; }}
+      {...rest}
+    />
+  );
+});
 
 /* ---------------- Nav ---------------- */
 export function Nav() {
-  const { cart, wishlist, user, setCartOpen } = useStore();
+  const { cart, wishlist, user, setCartOpen, theme, toggleTheme } = useStore();
   const [open, setOpen] = useState(false);
   const loc = useLocation();
   useEffect(() => setOpen(false), [loc.pathname]);
@@ -31,6 +48,9 @@ export function Nav() {
           ))}
         </div>
         <div className="nav__actions">
+          <button className="nav__cart nav__theme" onClick={toggleTheme} aria-label="Toggle dark mode">
+            {theme === "dark" ? "\u25CB" : "\u25CF"}
+          </button>
           <Link to="/wishlist" className="nav__cart">♡ <span>{wishlist.length}</span></Link>
           <Link to="/account" className="nav__cart">{user ? user.name.split(" ")[0] : "Account"}</Link>
           <button className="nav__cart" onClick={() => setCartOpen(true)}>Bag <span>{cart.length}</span></button>
@@ -59,9 +79,12 @@ export function Footer() {
           <div className="newsletter">
             <input type="email" placeholder="Email address" aria-label="Email address"
               value={email} onChange={e => setEmail(e.target.value)} />
-            <button aria-label="Subscribe" onClick={() => {
-              if (email.includes("@")) { showToast("You're on the list"); setEmail(""); }
-              else showToast("Enter a valid email");
+            <button aria-label="Subscribe" onClick={async () => {
+              if (!email.includes("@")) { showToast("Enter a valid email"); return; }
+              try {
+                await withFallback(() => api.post("/newsletter", { email }), () => ({ ok: true }));
+                showToast("You're on the list"); setEmail("");
+              } catch (err) { showToast(err.message); }
             }}>→</button>
           </div>
         </div>
@@ -126,7 +149,7 @@ export function CartDrawer() {
             if (!p) return null;
             return (
               <div className="cart-item" key={item.ts}>
-                <img src={p.img} alt={p.name} />
+                <Pic src={p.img + "&h=200"} fb={p.fb} alt={p.name} />
                 <div>
                   <h4>{p.name}</h4>
                   <span className="eyebrow">Size {item.size} — ${p.price}</span>
@@ -173,7 +196,7 @@ export function ProductCard({ p, delay = 0 }) {
     <div className="card" ref={ref}>
       <Link to={`/product/${p.id}`}>
         <figure>
-          <img src={p.img} alt={p.name} loading="lazy" />
+          <Pic src={p.img} fb={p.fb} alt={p.name} />
           <span className="card__quick">View piece</span>
         </figure>
       </Link>
