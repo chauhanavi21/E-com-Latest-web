@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { POSTS, FAQS, SIZE_ROWS } from "../data/catalog";
-import { PageHead } from "../components/Chrome";
+import { POSTS, FAQS, SIZE_ROWS, EDITORIAL } from "../data/catalog";
+import { PageHead, Pic } from "../components/Chrome";
 import { useStore } from "../context/StoreContext";
+import { api, withFallback } from "../api";
 
 gsap.registerPlugin(ScrollTrigger);
 const reduce = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -18,7 +19,7 @@ export function Journal() {
         {POSTS.map((post, i) => (
           <Link className="journal__row" to={`/journal/${post.slug}`} key={post.slug}>
             <span className="journal__num">{String(i + 1).padStart(2, "0")}</span>
-            <figure><img src={post.img} alt="" /></figure>
+            <figure><Pic src={post.img} fb={post.fb} alt="" /></figure>
             <div>
               <span className="eyebrow">{post.tag} — {post.date}</span>
               <h2>{post.title}</h2>
@@ -44,7 +45,7 @@ export function JournalPost() {
         <span className="eyebrow">{post.tag} — {post.date}</span>
         <h1>{post.title}</h1>
       </header>
-      <figure className="post__media"><img src={post.img} alt="" /></figure>
+      <figure className="post__media"><Pic src={post.img} fb={post.fb} alt="" /></figure>
       <div className="post__body">
         {post.body.map((para, i) => <p key={i}>{para}</p>)}
       </div>
@@ -83,9 +84,9 @@ export function About() {
         <p>MONO/FORM is a small clothing house built on a restriction: black, bone white, and nothing else. When color leaves the room, cut has to carry everything.</p>
       </header>
       <section className="about-strip">
-        <figure><img src="/assets/editorial-1.svg" alt="Figure in white against black" /></figure>
-        <figure><img src="/assets/editorial-2.svg" alt="Column dress framed in bone" /></figure>
-        <figure><img src="/assets/editorial-3.svg" alt="Three garments, one line" /></figure>
+        <figure><Pic src={EDITORIAL.atelier.img} fb={EDITORIAL.atelier.fb} alt="Portrait study" /></figure>
+        <figure><Pic src={EDITORIAL.column.img} fb={EDITORIAL.column.fb} alt="The Column Dress" /></figure>
+        <figure><Pic src={EDITORIAL.street.img} fb={EDITORIAL.street.fb} alt="Street look in white" /></figure>
       </section>
       <section className="about-values">
         {[
@@ -127,9 +128,14 @@ export function Contact() {
                 </select>
               </label>
               <label>Message<textarea name="message" rows="6" value={form.message} onChange={set} /></label>
-              <button className="pdp__add" onClick={() => {
-                if (form.name && form.email.includes("@") && form.message) setSent(true);
-                else showToast("Fill in name, email and message");
+              <button className="pdp__add" onClick={async () => {
+                if (!(form.name && form.email.includes("@") && form.message)) {
+                  showToast("Fill in name, email and message"); return;
+                }
+                try {
+                  await withFallback(() => api.post("/contact", form), () => ({ ok: true }));
+                  setSent(true);
+                } catch (err) { showToast(err.message); }
               }}>Send message</button>
             </>
           )}
@@ -213,13 +219,22 @@ export function Account() {
     );
   }
 
-  const submit = () => {
+  const submit = async () => {
     if (!form.email.includes("@") || form.password.length < 4 || (mode === "create" && !form.name)) {
       showToast("Check your details"); return;
     }
-    setUser({ name: form.name || form.email.split("@")[0], email: form.email });
-    showToast(mode === "create" ? "Account created" : "Welcome back");
-    nav("/account");
+    try {
+      const u = await withFallback(
+        () => api.post(mode === "create" ? "/auth/register" : "/auth/login",
+          { name: form.name, email: form.email, password: form.password }),
+        () => ({ name: form.name || form.email.split("@")[0], email: form.email })
+      );
+      setUser(u);
+      showToast(mode === "create" ? "Account created" : "Welcome back");
+      nav("/account");
+    } catch (err) {
+      showToast(err.message);
+    }
   };
 
   return (
