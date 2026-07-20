@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PRODUCTS, LOOKS } from "../data/catalog";
-import { ProductGrid } from "../components/Chrome";
+import { PRODUCTS, LOOKS, EDITORIAL } from "../data/catalog";
+import { ProductGrid, Pic } from "../components/Chrome";
 
 gsap.registerPlugin(ScrollTrigger);
 const reduce = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -43,7 +43,7 @@ function ChangingRoom() {
         <div className="stage__card">
           {LOOKS.map((l, i) => (
             <Link key={l.name} to={l.link} className={"stage__look" + (i === current ? " is-active" : "")} aria-label={l.name}>
-              <img src={l.img} alt={l.name} />
+              <Pic src={l.img} fb={l.fb} alt={l.name} eager />
             </Link>
           ))}
         </div>
@@ -149,7 +149,7 @@ export default function Home() {
             {PRODUCTS.slice(0, 6).map((p, i) => (
               <Link className="rail__item" to={`/product/${p.id}`} key={p.id}>
                 <figure>
-                  <img src={p.img} alt={p.name} />
+                  <Pic src={p.img} fb={p.fb} alt={p.name} />
                   <span className="rail__index">{String(i + 1).padStart(2, "0")}</span>
                 </figure>
                 <div className="rail__meta"><span>{p.name}</span><span className="price">${p.price}</span></div>
@@ -160,7 +160,7 @@ export default function Home() {
       </section>
 
       <section className="editorial">
-        <div className="editorial__media"><img src="/assets/editorial-1.svg" alt="Atelier study, figure in white on black" /></div>
+        <div className="editorial__media"><Pic src={EDITORIAL.atelier.img} fb={EDITORIAL.atelier.fb} alt="Atelier portrait study in grayscale" /></div>
         <div className="editorial__copy">
           <p className="eyebrow">The Atelier</p>
           <h2>Cut once.<br />Sew in silence.</h2>
@@ -171,7 +171,7 @@ export default function Home() {
       </section>
 
       <section className="editorial editorial--flip">
-        <div className="editorial__media"><img src="/assets/editorial-2.svg" alt="Column dress framed in bone white" /></div>
+        <div className="editorial__media"><Pic src={EDITORIAL.column.img} fb={EDITORIAL.column.fb} alt="The Column Dress worn on a model" /></div>
         <div className="editorial__copy">
           <p className="eyebrow">Piece of the season</p>
           <h2>The Column Dress</h2>
