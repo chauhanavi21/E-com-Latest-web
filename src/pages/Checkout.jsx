@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { PRODUCTS } from "../data/catalog";
-import { PageHead } from "../components/Chrome";
+import { PageHead, Pic } from "../components/Chrome";
 import { useStore } from "../context/StoreContext";
+import { api, withFallback } from "../api";
 
 const SHIPPING = 12;
 
@@ -23,15 +24,29 @@ export function Checkout() {
   const validStep1 = form.email.includes("@") && form.name && form.address && form.city && form.zip;
   const validStep2 = form.card.replace(/\s/g, "").length >= 12 && form.expiry && form.cvc.length >= 3;
 
-  const placeOrder = () => {
-    const order = {
-      number: "MF-" + Math.random().toString(36).slice(2, 8).toUpperCase(),
-      items: lines.map(l => ({ name: l.p.name, size: l.size, price: l.p.price })),
-      total: grand, name: form.name, email: form.email,
-      address: `${form.address}, ${form.city} ${form.zip}, ${form.country}`
-    };
-    clearCart();
-    nav("/confirmation", { state: order });
+  const [placing, setPlacing] = useState(false);
+  const placeOrder = async () => {
+    setPlacing(true);
+    const address = `${form.address}, ${form.city} ${form.zip}, ${form.country}`;
+    try {
+      const order = await withFallback(
+        () => api.post("/orders", {
+          items: cart.map(i => ({ id: i.id, size: i.size })),
+          name: form.name, email: form.email, address
+        }),
+        () => ({
+          number: "MF-" + Math.random().toString(36).slice(2, 8).toUpperCase(),
+          items: lines.map(l => ({ name: l.p.name, size: l.size, price: l.p.price })),
+          total: grand, name: form.name, email: form.email, address, offline: true
+        })
+      );
+      clearCart();
+      nav("/confirmation", { state: order });
+    } catch (err) {
+      showToast(err.message);
+    } finally {
+      setPlacing(false);
+    }
   };
 
   if (!cart.length) {
@@ -103,7 +118,7 @@ export function Checkout() {
                 <h4>Payment</h4>
                 <p>Card ending {form.card.replace(/\s/g, "").slice(-4)}</p>
               </div>
-              <button className="pdp__add" onClick={placeOrder}>Place order — ${grand}</button>
+              <button className="pdp__add" disabled={placing} onClick={placeOrder}>{placing ? "Placing order…" : `Place order — $${grand}`}</button>
             </div>
           )}
         </div>
@@ -112,7 +127,7 @@ export function Checkout() {
           <h3>Order summary</h3>
           {lines.map(l => (
             <div className="summary-line" key={l.ts}>
-              <img src={l.p.img} alt={l.p.name} />
+              <Pic src={l.p.img + "&h=160"} fb={l.p.fb} alt={l.p.name} />
               <div>
                 <h4>{l.p.name}</h4>
                 <span className="eyebrow">Size {l.size}</span>
